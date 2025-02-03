@@ -15,7 +15,7 @@ def check_eu_capital(city, capitals, currencies):
 # Example usage
 #check_eu_capital("Stockholm", eu_capitals, eu_capital_currencies)   # Output: {input_city} is a capital city of {dictionary_value}
 
-result = check_eu_capital("Bonn", eu_capitals, eu_capital_currencies)
+
 
 #print(country_data[0], country_data[2])
 #check_eu_capital("London", eu_capitals)  # Output: {input_city} is not in the list of EU capitals.
