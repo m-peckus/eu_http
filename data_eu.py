@@ -57,3 +57,33 @@ eu_capital_currencies = {
     "Madrid": "Euro",
     "Stockholm": "Swedish Krona"
 }
+
+eu_currencies = {
+    "Vienna": "EUR",
+    "Brussels": "EUR",
+    "Sofia": "BGN",
+    "Zagreb": "EUR",
+    "Nicosia": "EUR",
+    "Prague": "CZK",
+    "Copenhagen": "DKK",
+    "Tallinn": "EUR",
+    "Helsinki": "EUR",
+    "Paris": "EUR",
+    "Berlin": "EUR",
+    "Athens": "EUR",
+    "Budapest": "HUF",
+    "Dublin": "EUR",
+    "Rome": "EUR",
+    "Riga": "EUR",
+    "Vilnius": "EUR",
+    "Luxembourg": "EUR",
+    "Valletta": "EUR",
+    "Amsterdam": "EUR",
+    "Warsaw": "PLN",
+    "Lisbon": "EUR",
+    "Bucharest": "RON",
+    "Bratislava": "EUR",
+    "Ljubljana": "EUR",
+    "Madrid": "EUR",
+    "Stockholm": "SEK"
+}

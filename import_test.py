@@ -2,6 +2,7 @@
 
 from test_file import *
 from weather_api import city_temperature
+from currency_api import currency_rate
 import os 
 import requests
 import json
@@ -44,16 +45,17 @@ while True:
         user_input = user_input.title()
         result = check_eu_capital(user_input, eu_capitals, eu_capital_currencies)
         temperature = city_temperature(result, API_KEY)
+        rate = currency_rate(result)
 
     if temperature is None:
         print("Unable to retrieve temperature data. Please try again later.")
 
     if isinstance(result, tuple) and len(result) == 3:
         city, country, currency = result
-        if temperature is not None:
+        if currency != "Euro":
+            print(f"\n{city} is a capital city of {country}. Local currency is {currency}.\nCurrency exchange rate is {rate}\nLocal temperature is {temperature}°C")
+        if currency == "Euro":
             print(f"\n{city} is a capital city of {country}. Local currency is {currency}.\nLocal temperature is {temperature}°C")
-        else:
-            print(f"\n{city} is a capital city of {county}. Local currency is {currency}.\nTemperature data unavailable")
         # Future API calls will be integrated here
     else:
         print(f"{result} is not in the list of EU capitals.\nLocal temperature in {result} is {temperature} °C\n")
