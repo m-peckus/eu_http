@@ -87,3 +87,34 @@ eu_currencies = {
     "Madrid": "EUR",
     "Stockholm": "SEK"
 }
+
+# EU capitals to ISO 3166 country codes
+capital_iso = {
+    "Vienna": "at",
+    "Brussels": "be",
+    "Sofia": "bg",
+    "Zagreb": "hr",
+    "Nicosia": "cy",
+    "Prague": "cz",
+    "Copenhagen": "dk",
+    "Tallinn": "ee",
+    "Helsinki": "fi",
+    "Paris": "fr",
+    "Berlin": "de",
+    "Athens": "gr",
+    "Budapest": "hu",
+    "Dublin": "ie",
+    "Rome": "IT",
+    "Riga": "lv",
+    "Vilnius": "lt",
+    "Luxembourg": "lu",
+    "Valletta": "mt",
+    "Amsterdam": "nl",
+    "Warsaw": "pl",
+    "Lisbon": "pt",
+    "Bucharest": "ro",
+    "Bratislava": "sk",
+    "Ljubljana": "si",
+    "Madrid": "es",
+    "Stockholm": "se"
+}

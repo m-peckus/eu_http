@@ -3,6 +3,7 @@
 from test_file import *
 from weather_api import city_temperature
 from currency_api import currency_rate
+#from country_population_api import get_population
 import os 
 import requests
 import json
@@ -23,7 +24,6 @@ while True:
         "\nEnter the name of an EU capital city to get:\n\n"
         "- Local temperature\n"
         "- Local currency & exchange rate (if not Euro)\n"
-        "- 5 latest country-related news headlines\n"
         "- Confirmation of EU capital status\n"
         "\nEnter any other city name to check if it's an EU capital.\n- Or press 5 to exit\n"
         "Enter city name : "

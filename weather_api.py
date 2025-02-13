@@ -15,6 +15,7 @@ def city_temperature(result, api_key):
     # Determine the city name based on the input type
     city = result[0] if isinstance(result, tuple) and len(result) == 3 else result
 
+
     # API URL
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 

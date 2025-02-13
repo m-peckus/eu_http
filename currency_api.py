@@ -3,11 +3,9 @@
 import requests
 from data_eu import eu_currencies
 
-#city = input("Enter city name: ")
 def currency_rate(result):
     city = result[0] if isinstance(result, tuple) and len(result) == 3 else result
     # Returns the value of the item with the specified key
-    #country = eu_capitals.get(city)
     currency = eu_currencies.get(city)
 
     if currency != "EUR":
