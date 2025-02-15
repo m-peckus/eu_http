@@ -14,13 +14,16 @@ def format_country_population(population):
     return f"{formatted_population} residents"
 
 
+
 def get_population(result):
     # Determine country name based on the input type
     country = result[1] if isinstance(result, tuple) and len(result) == 3 else result
 
+
     if country == "Ireland":
         return "5.262.000  residents"
     
+
     # Define API endpoint
     url = f"https://restcountries.com/v3.1/name/{country}"
 
