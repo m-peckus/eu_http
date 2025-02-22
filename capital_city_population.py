@@ -2,24 +2,18 @@
 
 import requests 
 from data_eu import *
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from .env file
-load_dotenv()
-# Access API key for GeoDB from .env file
-api_key = os.getenv('x-rapidapi-key')
 
 
-def format_population(city_name, population):
+def format_population(population):
     """"Format population number with dot separators for readibility."""
     formatted_population = f"{population:,}".replace(",",".")
-    return f"{city_name} has a population of {formatted_population} residents."
+    return f"{formatted_population} residents"
 
 
-def get_capital_population(city_name, api_key):
+def get_capital_population(result, api_key):
     """Fetches the population data for an EU capital city, ensuring correct country match."""
-
+     # Determine city name based on the input type
+    city_name = result[0] if isinstance(result, tuple) and len(result) == 3 else result
     # Ensure the city exists in the dictionary
     if city_name not in capital_iso:
         return f"No population data available for {city_name}."
@@ -29,16 +23,18 @@ def get_capital_population(city_name, api_key):
     # Define API endpoint with country filter
     url = f"https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
 
-    # Custom filtering for Valletta
+    # Custom data for Valletta (original API data unavailable)
     if city_name == "Valletta":
-        params = {
+        return "5.157 residents"
+    """
+     params = {
             "namePrefix": city_name,
             "countryIds": country_code,
             "limit": 1
-        }
-
+    """
+    # Custom data for Rome (original API data is incorect)
     if city_name == "Rome":
-        return f"{city_name} has a population of 2.760.000 residents."
+        return "2.760.000 residents"
     
     else:
         params = {
@@ -68,43 +64,6 @@ def get_capital_population(city_name, api_key):
     
     population = cities[0].get("population", "Unknown")
 
-    return format_population(city_name, population)
+    return format_population(population)
 
 
-print(get_capital_population("Stockholm", api_key)) # Continue testing 
-
-
-# Dictionary mapping EU capitals to ISO 3166 country codes
-
-"""
-capital_iso = {
-    "Vienna": "at",
-    "Brussels": "be",
-    "Sofia": "bg",
-    "Zagreb": "hr",
-    "Nicosia": "cy",
-    "Prague": "cz",
-    "Copenhagen": "dk",
-    "Tallinn": "ee",
-    "Helsinki": "fi",
-    "Paris": "fr",
-    "Berlin": "de",
-    "Athens": "gr",
-    "Budapest": "hu",
-    "Dublin": "ie",
-    "Rome": "it",
-    "Riga": "lv",
-    "Vilnius": "lt",
-    "Luxembourg": "lu",
-    "Valletta": "mt",
-    "Amsterdam": "nl",
-    "Warsaw": "pl",
-    "Lisbon": "pt",
-    "Bucharest": "ro",
-    "Bratislava": "sk",
-    "Ljubljana": "si",
-    "Madrid": "es",
-    "Stockholm": "se"
-}
-
-"""

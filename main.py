@@ -4,13 +4,16 @@ from user_input import *
 from weather_api import city_temperature
 from currency_api import currency_rate
 from country_population_api import get_population
+from capital_city_population import get_capital_population
 import os 
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-# Access API key from .env file
+# Access API key for Open Weather Map from .env file
 API_KEY = os.getenv('OPEN_WEATHER_MAP_API_KEY')
+# Access API key for GeoDB from .env file
+api_key = os.getenv('x-rapidapi-key')
 
 
 def clear_screen():
@@ -45,6 +48,7 @@ while True:
         temperature = city_temperature(result, API_KEY)
         rate = currency_rate(result)
         country_population = get_population(result)
+        capital_population = get_capital_population(result, api_key)
 
     if temperature is None:
         print("Unable to retrieve temperature data. Please try again later.")
@@ -54,7 +58,8 @@ while True:
         if currency != "Euro":
             print(
                 f"{city} is a capital city of {country}.\n"
-                f"- Population of {country} is {country_population}.\n"
+                f"- Population of {city}: {capital_population}.\n"
+                f"- Population of {country}: {country_population}.\n"
                 f"- Local currency is {currency}.\n"
                 f"- 1 {currency} equals to {rate} Euro.\n"
                 f"- Weather temperature in {city} is {temperature}°C\n"
@@ -62,7 +67,8 @@ while True:
         if currency == "Euro":
             print(
                 f"{city} is a capital city of {country}.\n"
-                f"- Population of {country} is: {country_population}.\n"
+                f"- Population of {city}: {capital_population}.\n"
+                f"- Population of {country}: {country_population}.\n"
                 f"- Local currency is {currency}.\n"
                 f"- Weather temperature in {city} is {temperature}°C\n"
                 )
