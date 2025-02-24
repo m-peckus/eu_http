@@ -5,6 +5,7 @@ import requests
 import math
 from dotenv import load_dotenv
 import os
+from data_eu import *
 
 # Load environment variables from .env file
 load_dotenv()
@@ -15,9 +16,14 @@ def city_temperature(result, api_key):
     # Determine the city name based on the input type
     city = result[0] if isinstance(result, tuple) and len(result) == 3 else result
 
+    # Get country code
+    country_code = capital_iso.get(city, "")
 
-    # API URL
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    if not country_code:
+        return f"Error: {city} is not a recognized EU capital."
+
+    # API URL 
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city},{country_code}&appid={api_key}"
 
     try:
         response = requests.get(url)
@@ -31,7 +37,7 @@ def city_temperature(result, api_key):
             temp_celsius = math.floor(temp_kelvin - 273.15)
             return temp_celsius
         else:
-            print(f"Temperature data not found for {city}.")
+            print(f"Temperature data not found for {city}, {country_code}.")
 
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: Client side error")

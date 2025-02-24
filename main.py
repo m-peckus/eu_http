@@ -75,7 +75,6 @@ while True:
         
     else:
         print(
-            f"{result} is not in the list of EU capitals.\n"
-            f"- Weather temperature in {result} is {temperature} °C\n"
+            f"{result} is not a rezognized EU capital.\n"
             )
 
