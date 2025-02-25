@@ -2,24 +2,20 @@
 import requests 
 from data_eu import *
 
-#def format_country_population(country, population):
- #   """"Format population number with dot separators for readibility."""
- #   formatted_population = f"{population:,}".replace(",",".")
- #  return f"{country} has a population of {formatted_population} residents."
-
-
 def format_country_population(population):
     """"Format population number with dot separators for readibility."""
-    formatted_population = f"{population:,}".replace(",",".")
-    return f"{formatted_population} residents"
+    return f"{population:,}".replace(",",".") + "residents"
 
 
 def get_population(result):
-    # Determine country name based on the input type
+    """Fetches the population data for a country, ensuring correct data retrieval."""
+
+    # Determine country name based on input type
     country = result[1] if isinstance(result, tuple) and len(result) == 3 else result
 
+    # Custom population data for Ireland (API data is incorrect)
     if country == "Ireland":
-        return "5.262.000  residents"
+        return format_country_population(5262000)
     
     # Define API endpoint
     url = f"https://restcountries.com/v3.1/name/{country}"
@@ -31,14 +27,11 @@ def get_population(result):
     
     data = response.json()
 
-    # Extract relevant population info
-    country_population = data[0].get("population", "Unknown")
-    # Extract capital city name
-    #capital_city = data[0].get("capital", ["Unknown"])[0]
-     
-    # Information with capital city name 
-    #return f"{country}: {country_population} people. Capital: {capital_city}"
-
-    # Information without capital city name
-    return f"{format_country_population(country_population)}"
+    # Ensure valid data response
+    if not data or not isinstance(data, list) or "population" not in data[0]:
+        return f"No population data found for {country}."
+    
+    # Extract and format population data
+    country_population = data[0]["population"]
+    return format_country_population(country_population)
 

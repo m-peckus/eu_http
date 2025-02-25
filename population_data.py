@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# File is not used in this project
+
+
 import requests 
 from data_eu import *
 from dotenv import load_dotenv
@@ -9,6 +12,8 @@ import os
 load_dotenv()
 # Access API key for GeoDB from .env file
 api_key = os.getenv('x-rapidapi-key')
+
+
 
 
 def format_population(city_name, population):
@@ -73,6 +78,7 @@ def get_capital_population(city_name, api_key):
 
 print(get_capital_population("Stockholm", api_key)) # Continue testing 
 
+"""
 
 # Dictionary mapping EU capitals to ISO 3166 country codes
 
@@ -107,4 +113,3 @@ capital_iso = {
     "Stockholm": "se"
 }
 
-"""
