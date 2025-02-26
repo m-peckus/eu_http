@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-from data_eu import *
 
-def check_eu_capital(city, capitals, currencies):
+from nested_eu_data import *
+
+def check_eu_capital(city):
     
-    if city in eu_capitals:
-        country = capitals[city]
-        currency = currencies[city]
+    if city in eu_data:
+        country = eu_data[city]["country"]
+        currency = eu_data[city]["currency_name"]
         return city, country, currency
     else:
         return city

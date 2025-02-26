@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
 import requests
-from data_eu import eu_currencies
+from nested_eu_data import *
 
 def currency_rate(result):
     """Fetches exchange rate if the local currency is not Euro"""
     city = result[0] if isinstance(result, tuple) and len(result) == 3 else result
-    currency = eu_currencies.get(city)
+    # Access data from nested dictionary
+    currency = eu_data[city]["currency_code"]
 
     if currency == "EUR":
         return f"Local currency in {city} is Euro (no exchange rate needed)."
         
-    # API call using `foreign_currency` variable
+    # API call 
     url = f"https://api.frankfurter.app/latest?from=EUR&to={currency}"
     response = requests.get(url)
 

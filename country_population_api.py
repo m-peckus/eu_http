@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+
 import requests 
-from data_eu import *
+from nested_eu_data import *
+# from data_eu import *
 
 def format_country_population(population):
     """"Format population number with dot separators for readibility."""

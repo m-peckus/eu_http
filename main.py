@@ -44,7 +44,7 @@ while True:
         print("Invalid input: City names can't exceed 12 characters.\n")
     else:
         user_input = user_input.title()
-        result = check_eu_capital(user_input, eu_capitals, eu_capital_currencies)
+        result = check_eu_capital(user_input)
         temperature = city_temperature(result, API_KEY)
         rate = currency_rate(result)
         country_population = get_population(result)

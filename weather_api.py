@@ -5,7 +5,7 @@ import requests
 import math
 from dotenv import load_dotenv
 import os
-from data_eu import *
+from nested_eu_data import *
 
 # Load environment variables from .env file
 load_dotenv()
@@ -16,8 +16,8 @@ def city_temperature(result, api_key):
     # Determine the city name based on the input type
     city = result[0] if isinstance(result, tuple) and len(result) == 3 else result
 
-    # Get country code
-    country_code = capital_iso.get(city, "")
+    # Get country code from nested dictionary
+    country_code = eu_data[city]["iso_code"]
 
     if not country_code:
         return f"Error: {city} is not a recognized EU capital."

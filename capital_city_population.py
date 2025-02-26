@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests 
-from data_eu import *
+from nested_eu_data import *
 
 # Hardcoded population data for cities with incorrect/missing API values
 fixed_populations = {
@@ -20,8 +20,8 @@ def get_capital_population(result, api_key):
      # Extract city name from input
     city_name = result[0] if isinstance(result, tuple) and len(result) == 3 else result
 
-    # Check if city exists in capital_iso
-    if city_name not in capital_iso:
+    # Check if city exists in nested dictionary
+    if city_name not in eu_data:
         return f"No population data available for {city_name}."
     
     # Return hardcoded data if city is in fixed_populations
@@ -33,7 +33,7 @@ def get_capital_population(result, api_key):
     url = f"https://wft-geo-db.p.rapidapi.com/v1/geo/cities"
     params = {
             "namePrefix": city_name, 
-            "countryIds": capital_iso[city_name], # Ensures correct country match
+            "countryIds": eu_data[city_name]["iso_code"], # Ensures correct iso code country match
             "limit": 1, # Get only the best match
             "minPopulation": 400000 # Exclude small cities with similar names
     }
