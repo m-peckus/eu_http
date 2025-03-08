@@ -11,3 +11,4 @@ def check_eu_capital(city):
     else:
         return city
 
+#print(check_eu_capital("Vilnius"))

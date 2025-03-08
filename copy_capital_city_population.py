@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 
 import requests 
+import os
+from dotenv import load_dotenv
 from nested_eu_data import *
+
+# Load API key from .env file
+load_dotenv()
+RAPID_API_KEY = os.getenv('RAPID_API_KEY')
+print(RAPID_API_KEY)
 
 # Hardcoded population data for cities with incorrect/missing API values
 fixed_populations = {
